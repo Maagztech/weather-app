@@ -8,7 +8,14 @@ const forecast = (address, callback) => {
         } else if (body.error) {
             callback('Unable to find location', undefined)
         } else {
-            callback(undefined,  ' It is currently ' + body.current.temperature + ' degress out. There is a ' + body.current.precip + '% chance of rain.',body.location.region+','+body.location.country)
+            let day_or_night ='Day';
+            if(body.current.is_day =='no')
+            {
+                day_or_night='Night';
+            }
+             
+
+            callback(undefined,  ' It is currently ' + body.current.temperature + ' degress out. There is a ' + body.current.precip + '% chance of rain.',body.location.region+','+body.location.country+'. It is '+day_or_night+' thare.')
         }
     })
 }
