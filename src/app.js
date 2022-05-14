@@ -1,7 +1,7 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-
+const cors = require('cors')
 const forecast = require('./utils/forecast')
 
 const app = express()
@@ -49,7 +49,7 @@ app.get('/weather', (req, res) => {
     }
     let address = req.query.address
 
-    forecast(address, (error, forecastData,location) => {
+    forecast(address, (error, forecastData, location) => {
         if (error) {
             return res.send({ error })
         }
